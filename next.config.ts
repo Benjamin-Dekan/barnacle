@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
         hostname: "image.tmdb.org",
       },
     ],
+
+    unoptimized: true,
   },
 };
 
