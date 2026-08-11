@@ -4,7 +4,7 @@ import Image from "next/image";
 interface Movie {
   id: number;
   title: string;
-  poster_path: string;
+  poster_path?: string | null;
 }
 
 interface MovieProps {
@@ -18,9 +18,14 @@ const MovieCard = ({ movie, className = "w-full" }: MovieProps) => {
       <div className="bg-[#343434] ml-1 rounded-3xl shadow-md overflow-hidden transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#004B5C]">
         <div className="relative w-full aspect-2/3">
           <Image
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                : "/image-placeholder.svg"
+            }
             alt={movie.title}
             fill
+            unoptimized
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
             className="object-cover"
           />

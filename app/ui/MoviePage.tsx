@@ -8,23 +8,23 @@ import WatchProvider from "./WatchProvider";
 interface Movie {
   id: number;
   title: string;
-  poster_path: string;
+  poster_path?: string | null;
 }
 
 interface ActorInfo {
   id: number;
   credit_id: string;
   name: string;
-  profile_path: string;
+  profile_path?: string | null;
   character: string;
 }
 
 interface Backdrop {
-  file_path: string;
+  file_path?: string | null;
 }
 
 interface providerInfo {
-  logo_path: string;
+  logo_path?: string | null;
   provider_name: string;
 }
 
@@ -35,8 +35,8 @@ interface providerObject {
 
 interface MovieData {
   title: string;
-  backdrop_path: string;
-  poster_path: string;
+  backdrop_path?: string | null;
+  poster_path?: string | null;
   release_date: string;
   runtime: number;
   overview: string;
@@ -49,7 +49,9 @@ interface MovieData {
 
 const MoviePage = ({ data }: { data: MovieData }) => {
   const backdrops = data.images?.backdrops ?? [];
-  const mediaTiles = backdrops.slice(0, 6);
+  const mediaTiles = backdrops
+    .filter((backdrop) => backdrop.file_path)
+    .slice(0, 6) as Backdrop[];
 
   const recommendations = data.recommendations?.results ?? [];
   const castList = data.credits?.cast ?? [];
@@ -61,16 +63,24 @@ const MoviePage = ({ data }: { data: MovieData }) => {
   const providerLink = data["watch/providers"]?.results?.US?.link ?? undefined;
   const flatrateProviders = data["watch/providers"]?.results?.US?.flatrate;
 
+  const backdropSrc = data.backdrop_path
+    ? `https://image.tmdb.org/t/p/w1280${data.backdrop_path}`
+    : "/image-placeholder.svg";
+  const posterSrc = data.poster_path
+    ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
+    : "/image-placeholder.svg";
+
   return (
     <main className="bg-[#08171A] z-1">
       <div className="flex flex-col">
         {/* Header */}
         <div className="relative w-full min-h-112.5 overflow-hidden">
           <Image
-            src={`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`}
+            src={backdropSrc}
             alt={data.title}
             fill
             priority
+            unoptimized
             className="object-cover brightness-[0.3] -z-10"
           />
           <div className="absolute top-4 left-4 z-30 flex gap-2">
@@ -82,9 +92,10 @@ const MoviePage = ({ data }: { data: MovieData }) => {
           <div className="absolute inset-0 max-w-[1600px] mx-auto">
             <div className="w-50 h-75 absolute top-1/2 -translate-y-1/2 right-14 overflow-hidden rounded-xl shadow-2xl shrink-0 hidden min-[1200px]:block">
               <Image
-                src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+                src={posterSrc}
                 alt={data.title}
                 fill
+                unoptimized
                 className="object-cover"
               />
             </div>
@@ -185,9 +196,14 @@ const MoviePage = ({ data }: { data: MovieData }) => {
                   className={`rounded-xl relative overflow-hidden h-69 aspect-video px-2`}
                 >
                   <Image
-                    src={`https://image.tmdb.org/t/p/w500${backdrop.file_path}`}
+                    src={
+                      backdrop.file_path
+                        ? `https://image.tmdb.org/t/p/w500${backdrop.file_path}`
+                        : "/image-placeholder.svg"
+                    }
                     alt={data.title}
                     fill
+                    unoptimized
                     className="object-cover"
                   />
                 </div>

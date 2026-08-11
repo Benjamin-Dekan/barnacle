@@ -4,7 +4,7 @@ import Image from "next/image";
 interface ActorInfo {
   id: number;
   name: string;
-  profile_path: string;
+  profile_path?: string | null;
   character: string;
 }
 
@@ -16,10 +16,15 @@ const ActorCard = ({ actor }: { actor: ActorInfo }) => {
     >
       <div className="relative ml-1 aspect-2/3 ring-1 ring-white/10 rounded-xl shadow-md overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#004B5C]">
         <Image
-          src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+          src={
+            actor.profile_path
+              ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+              : "/image-placeholder.svg"
+          }
           alt={actor.name}
           width={500}
           height={750}
+          unoptimized
           className="w-full h-auto object-cover"
         />
 

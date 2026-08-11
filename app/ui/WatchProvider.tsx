@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface providerInfo {
-  logo_path: string;
+  logo_path?: string | null;
   provider_name: string;
 }
 
@@ -19,16 +19,19 @@ const WatchProvider = ({
 
   return (
     <div className="flex gap-2">
-      {providerData.flatrate?.map((provider) => (
-        <Image
-          src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
-          width={45}
-          height={45}
-          alt={provider.provider_name}
-          key={provider.provider_name}
-          className="rounded-lg overflow-hidden"
-        />
-      ))}
+      {providerData.flatrate
+        ?.filter((provider) => provider.logo_path)
+        .map((provider) => (
+          <Image
+            src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
+            width={45}
+            height={45}
+            alt={provider.provider_name}
+            key={provider.provider_name}
+            unoptimized
+            className="rounded-lg overflow-hidden"
+          />
+        ))}
     </div>
   );
 };
