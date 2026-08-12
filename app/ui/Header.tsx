@@ -3,8 +3,8 @@ import NavLinks from "./NavLinks";
 import SearchBar from "./SearchBar";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
-
 import { Cormorant } from "next/font/google";
+import Link from "next/link";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -30,12 +30,14 @@ const Header = () => {
     <header className="sticky z-50 top-0 w-full bg-[#004B5C]/30 border-b border-white/10 backdrop-blur-md px-6 pt-4 pb-2">
       <div className="flex items-center gap-2">
         <div className="flex flex-1 items-center gap-3">
-          <Image
-            src="/barnacle.svg"
-            width={52}
-            height={52}
-            alt="Picture of barnacle logo"
-          />
+          <Link href="/">
+            <Image
+              src="/barnacle.svg"
+              width={52}
+              height={52}
+              alt="Picture of barnacle logo"
+            />
+          </Link>
           <h1 className={` ${cormorant.className} font-medium text-3xl`}>
             Barnacle
           </h1>
