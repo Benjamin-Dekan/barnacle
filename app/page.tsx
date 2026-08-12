@@ -101,7 +101,19 @@ export default function Home() {
 
       {/* Footer */}
       <footer>
-        <div className="max-w-[1600px] mx-auto h-[clamp(150px,20vw,320px)]">
+        <div className="relative max-w-[1600px] mx-auto h-[clamp(150px,20vw,320px)]">
+          <div className="absolute inset-x-0 bottom-4 z-10 items-center flex justify-center px-4 text-center text-[10px] sm:text-xs text-white/75 gap-2">
+            <Image
+              src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg"
+              width={30}
+              height={30}
+              alt="TMDB Logo"
+            />
+            <p>
+              This product uses the TMDb API but is not endorsed or certified by
+              TMDb.
+            </p>
+          </div>
           <svg
             width="100%"
             height="100%"
