@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import { Search } from "lucide-react";
 import { ChangeEvent, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
@@ -38,13 +38,7 @@ const SearchBar = (props: SearchProps) => {
   };
   return (
     <div className="group flex items-center w-64 rounded-full bg-[#08171A] px-4 h-10 text-white gap-2">
-      <Image
-        src="/icons8-search-50-2.svg"
-        alt="Search"
-        width={20}
-        height={20}
-        className="opacity-50 group-focus-within:hidden"
-      ></Image>
+      <Search size={25} className="opacity-50 group-focus-within:hidden" />
       <input
         type="text"
         placeholder="Search..."
