@@ -3,14 +3,8 @@ import NavLinks from "./NavLinks";
 import SearchBar from "./SearchBar";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { Cormorant } from "next/font/google";
 import Link from "next/link";
-
-const cormorant = Cormorant({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-});
+import { cormorant } from "@/app/fonts";
 
 const Header = () => {
   const router = useRouter();

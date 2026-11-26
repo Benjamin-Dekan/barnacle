@@ -1,21 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Cormorant, Playfair_Display } from "next/font/google";
+import { cormorant, playfair } from "@/app/fonts";
 import { Compass, SlidersHorizontal, Search } from "lucide-react";
 import SignIn from "./ui/signin-button";
 import { auth } from "../auth";
-
-const cormorant = Cormorant({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-});
 
 export default async function Home() {
   const session = await auth();
