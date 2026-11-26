@@ -25,7 +25,7 @@ const DiscoverGrid = ({ data, query, provider }: DiscoverGridProps) => {
     if (entries[0].isIntersecting) {
       pageCounterRef.current++;
       const response = await fetch(
-        `/api/movies?q=${queryVal}&provider=${providerVal}&page=${pageCounterRef.current}`,
+        `/api/movies?q=${encodeURIComponent(queryVal)}&provider=${encodeURIComponent(providerVal)}&page=${pageCounterRef.current}`,
       );
       const result = await response.json();
 

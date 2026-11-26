@@ -33,7 +33,7 @@ const SearchBar = (props: SearchProps) => {
   const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (!isOnSearch && event.key === "Enter") {
       onSearch(value);
-      router.push(`/search?q=${value}`);
+      router.push(`/search?q=${encodeURIComponent(value)}`);
     }
   };
   return (
