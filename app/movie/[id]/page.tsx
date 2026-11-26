@@ -3,7 +3,7 @@ import MoviePage from "@/app/ui/MoviePage";
 export default async function MovieLandingPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
   const response = await fetch(

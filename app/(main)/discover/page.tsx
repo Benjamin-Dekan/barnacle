@@ -4,7 +4,7 @@ import FilterBar from "@/app/ui/FilterBar";
 export default async function DiscoverPage({
   searchParams,
 }: {
-  searchParams: { q: string; provider: string };
+  searchParams: Promise<{ q?: string; provider?: string }>;
 }) {
   const params = await searchParams;
   const query = params.q;

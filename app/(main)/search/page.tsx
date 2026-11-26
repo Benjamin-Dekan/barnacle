@@ -3,7 +3,7 @@ import DiscoverGrid from "@/app/ui/DiscoverGrid";
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { q: string; provider: string };
+  searchParams: Promise<{ q?: string; provider?: string }>;
 }) {
   const params = await searchParams;
   const query = params.q ?? null;
