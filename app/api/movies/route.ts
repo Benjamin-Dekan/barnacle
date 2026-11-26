@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   } else {
     endpoint = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&page=${page}`;
   }
-  const response = await fetch(endpoint);
+  const response = await fetch(endpoint, { next: { revalidate: 3600 } });
   const data = await response.json();
 
   return NextResponse.json(data);

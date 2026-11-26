@@ -11,7 +11,7 @@ export default async function SearchPage({
   let data = { results: [] };
   if (query) {
     const endpoint = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&query=${encodeURIComponent(query)}`;
-    const response = await fetch(endpoint);
+    const response = await fetch(endpoint, { next: { revalidate: 3600 } });
     data = await response.json();
   }
 

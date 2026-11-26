@@ -18,7 +18,7 @@ export default async function DiscoverPage({
     endpoint = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}`;
   }
 
-  const response = await fetch(endpoint);
+  const response = await fetch(endpoint, { next: { revalidate: 3600 } });
   const data = await response.json();
 
   return (
