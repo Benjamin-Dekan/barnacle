@@ -150,7 +150,7 @@ const MoviePage = ({ data }: { data: MovieData }) => {
 
                 {/* Watch Providers*/}
                 <div className="flex flex-row py-5 items-center gap-2">
-                  {flatrateProviders?.length && providerLink && (
+                  {flatrateProviders && flatrateProviders.length > 0 && providerLink && (
                     <>
                       <a
                         href={providerLink}
