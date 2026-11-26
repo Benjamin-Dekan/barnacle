@@ -11,7 +11,7 @@ export default async function DiscoverPage({
   const provider = params.provider;
   let endpoint;
   if (provider) {
-    endpoint = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_watch_providers=${provider}&watch_region=US`;
+    endpoint = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_watch_providers=${provider.replaceAll(",", "|")}&watch_region=US`;
   } else if (query) {
     endpoint = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&query=${query}`;
   } else {
